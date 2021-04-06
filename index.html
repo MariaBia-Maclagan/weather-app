@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/3b0c59fca5.js" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yantramanav:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@500&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="src/style.css"/>
+</head>
+<body>
+    <div class="container">
+    <div class="card">
+    <div class="card-body">    
+    <form id="search">
+        <input type="text" placeholder="Enter city" id="enter-city-input"/>
+        <input type="submit" value="search" class="btn btn-info button"/>
+        <a href="#"><i class="fas fa-map-marker-alt current-location-icon" id="current-location"></i></a>
+    </form>
+    <br/>
+    <div class="row">
+        <div class="col-8">
+    <h1 id="city-name">London </h1>
+</div>
+<div class="col-4">
+    <i class="fas fa-cloud cloud-icon"></i>
+</div>
+</div>
+<div class="row">
+    <div class="col-4">
+<p class="temperature-today">
+   <span id="current-day-time">Thursday 12:58</span> 
+    <br/>
+    <span id="description-index">Cloudy</span>
+    <br/>
+    <span id="temp-max-min-today"><strong></strong></span>
+</p>
+</div>
+<div class="col-4">
+<h2 class="temperature-now">
+    <span id="temperature-input"></span>
+    <span class="degree" id="degree-celsius-input">°C</span> 
+</h2>
+</div>
+<div class="col-4">
+<p class="precipitation-today">
+    <br/>
+    <span id="wind-index"></span>
+    <br/>
+    <span id="humidity-index"></span>
+</p>
+</div>
+</div>
+<ul>
+    <div class="row">
+        <div class="col-8">
+    <li>
+       <p> <i class="fas fa-cloud-sun cloud-sun-icon"></i>  Tomorrow</p>
+    </li>
+</div>
+<div class="col-4">
+    <li id="temp-tomorrow">
+       <strong>6°</strong> <spam>/0°</spam>
+    </li>
+</div>
+    <div class="col-8">
+    <li>
+       <p> <i class="fas fa-cloud-sun cloud-sun-icon"></i>
+        Sat</p> 
+    </li>
+</div>
+<div class="col-4">
+    <li id="temp-third-day">
+   <strong>7°</strong> <span>/0°</span> 
+</li>
+</div>
+<div class="col-8">
+<li>
+    <p><i class="fas fa-cloud-sun cloud-sun-icon"></i>
+     Sun</p>
+</li>
+</div>
+<div class="col-4">
+<li id="temp-fourth-day">
+    <strong>7°</strong> <span>/0°</span> 
+</li>
+</div>
+<div class="col-8">
+<li>
+   <p> <i class="fas fa-cloud-sun cloud-sun-icon"></i>
+     Mon</p>
+</li>
+</div>
+<div class="col-4">
+<li id="temp-fith-day">
+<strong>7°</strong> <span>/0°</span> 
+</li>
+</div>
+<div class="col-8">
+<li>
+   <p> <i class="fas fa-cloud-sun cloud-sun-icon"></i>
+ Tue</p>
+</li>
+</div>
+<div class="col-4">
+<li id="temp-six-day">
+<strong>9°</strong> <span>/3°</span> 
+</li>
+</div>
+</div>
+</ul>
+<br/>
+<h3 >
+    <i class="fas fa-random switch"></i>
+    <a href = "#" class=fahrenheit id="fahrenheit-celsius">Switch to Fahrenheit</a>
+</h3>
+</div>   
+</div> 
+</div>
+<script src="src/index.js"></script>
+</body>
+</html>

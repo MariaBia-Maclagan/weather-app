@@ -1,0 +1,116 @@
+body{
+    background: linear-gradient(99.6deg, rgb(112, 128, 152) 10.6%, rgb(240, 228, 211) 32.9%, rgb(236, 212, 185) 52.7%, rgb(220, 227, 239) 72.8%, rgb(185, 205, 227) 81.1%, rgb(154, 180, 212) 102.4%);
+}
+div.card{
+ display: block;
+ margin: 100px auto;
+ padding: 30px 40px 20px 40px;
+ border-radius: 15px;
+ box-shadow: rgb(0 0 0 / 20%) 0 5px 5px 0;
+ background: linear-gradient(to top, #dfe9f3 0%, white 100%);
+ max-width: 500px;
+}
+form{
+    text-align: center;
+    font-family: 'M PLUS 1p', sans-serif;
+}
+.button {
+    font-size: 13px;
+    box-shadow: rgb(0 0 0 / 20%) 0 3px 3px 0;
+    background-color: #134A61;
+    color:#ffffff;
+    border: none;
+}
+.button:hover{
+    color: #ffffff;
+    background-color: #2da3d6;;
+}
+.current-location-icon{
+    font-size: 25px;
+    color: #134A61;
+    position: relative;
+    top:5px;
+}
+.current-location-icon:hover{
+    color: #2da3d6;
+}
+h1{ font-size: 35px;
+    display: inline;
+    padding: 0 0 10px 0;
+    font-family: 'Yantramanav', sans-serif;
+    color: #134A61;
+}
+.cloud-icon {
+    font-size: 50px;
+    position: relative;
+    right: -38px;
+    padding: 0 0 10px 0;
+    color: #134A61;  
+}
+p.temperature-today{
+    font-size: 13px;
+    padding: 0;
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #787d83;
+}
+p.precipitation-today{
+    font-size: 12px;
+    position: relative;
+    right: -20px;
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #787d83;
+}
+h2 {
+    font-size: 50px;
+    position: relative;
+    left: 20px;
+    font-family: 'Yantramanav', sans-serif;
+    padding: 0;
+    color:#3581bb
+    
+}
+.degree{
+    font-size: 16px;
+    position: relative;
+    top: -24px;
+    left: -10px;
+    text-decoration: none;
+    color:#3581bb
+}
+h2.temperature-now{
+    display: block;
+    margin: 0 0 0 30px;
+}
+ul{
+    display: block;
+    margin: 0 60px;
+    list-style: none;
+    padding: 0;
+    
+}
+li{
+    padding: 10px 0;
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #c98922;
+    font-size: 17px;
+}
+.cloud-sun-icon {
+    color: #f4c208;
+    font-size: 20px;
+}
+h3{
+    font-size: 12px;
+    text-align: center;
+    font-family: 'M PLUS 1p', sans-serif;
+    color: #787d83;
+}
+.fahrenheit {
+    text-decoration:none;
+    color: #787d83;
+}
+.fahrenheit:hover{
+    color:#2da3d6;
+}
+.switch:hover {
+    color:#2da3d6;
+}
