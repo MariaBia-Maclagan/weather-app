@@ -114,3 +114,13 @@ h3{
 .switch:hover {
     color:#2da3d6;
 }
+.openSource {
+    text-align: center;
+    position: relative;
+    top: -90px;
+    font-family: 'M PLUS 1p', sans-serif;
+    font-size: 13px;
+}
+.code {
+    text-decoration: none;
+}
