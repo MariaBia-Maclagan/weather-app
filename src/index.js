@@ -25,13 +25,9 @@ function formatDate(timestamp) {
 function showTemperature (response) {
 
 document.querySelector ("#city-name").innerHTML = response.data.name;
-
 document.querySelector("#temperature-input").innerHTML = Math.round(response.data.main.temp);
-
 document.querySelector("#humidity-index").innerHTML = Math.round(response.data.main.humidity);
-
 document.querySelector("#wind-index").innerHTML = Math.round(response.data.wind.speed);
-
 document.querySelector("#description-index").innerHTML = response.data.weather[0].main;
 
 let today = document.querySelector("#current-day-time");
@@ -46,24 +42,41 @@ tempMaxMin.innerHTML = `${maxTemperature}° / ${minTemperature}°`;
 let icon = document.querySelector("#icon");
 icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 icon.setAttribute("alt", response.data.weather[0].description);
+
+celsiusTemperature = response.data.main.temp;
 }
+celsiusTemperature = null;
+
 function changeDegreesCelsius (event) {
   event.preventDefault();
   let degreeSwitch = document.querySelector("#fahrenheit-celsius");
   degreeSwitch.innerHTML = `Switch to Fahrenheit`;
+
+  let temperatureElement = document.querySelector("#temperature-input");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+
+  let celsius = document.querySelector("#degree-celsius-input");
+  celsius.innerHTML =`°C`;
+
 }
 
-function changeDegrees(event) {
+function changeDegreesFahrenheit(event) {
   event.preventDefault();
   let degreeSwitch = document.querySelector("#fahrenheit-celsius");
   degreeSwitch.innerHTML = `Switch to Celsius`;
 
+  let temperatureElement = document.querySelector("#temperature-input");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature * 9/5+32);
+
+  let fahrenheit = document.querySelector("#degree-celsius-input");
+  fahrenheit.innerHTML =`°F`;
+
  let degrees = document.querySelector("#fahrenheit-celsius");
-degrees.addEventListener("click", changeDegreesCelsius);
+ degrees.addEventListener("click", changeDegreesCelsius);
 }
 
 let degrees = document.querySelector("#fahrenheit-celsius");
-degrees.addEventListener("click", changeDegrees);
+degrees.addEventListener("click", changeDegreesFahrenheit);
 
 function searchCity(city) {
 let apikey ="bb872f49cc68a55123bc66fe7274548f";
