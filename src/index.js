@@ -27,24 +27,12 @@ function showTemperature (response) {
 document.querySelector ("#city-name").innerHTML = response.data.name;
 
 document.querySelector("#temperature-input").innerHTML = Math.round(response.data.main.temp);
-//let temperature = Math.round(response.data.main.temp);
-//let temperatureElement = document.querySelector("#temperature-input");
-//temperatureElement.innerHTML = ` ${temperature}`;
 
 document.querySelector("#humidity-index").innerHTML = Math.round(response.data.main.humidity);
-//let humidity = Math.round(response.data.main.humidity);
-//let humidityInput = document.querySelector("#humidity-index");
-//humidityInput.innerHTML = ` Humidity ${humidity}%`;
 
 document.querySelector("#wind-index").innerHTML = Math.round(response.data.wind.speed);
-//let wind = Math.round(response.data.wind.speed);
-//let windSpeed = document.querySelector("#wind-index");
-//windSpeed.innerHTML = ` Wind ${wind} km/h`;
 
 document.querySelector("#description-index").innerHTML = response.data.weather[0].main;
-//let description = response.data.weather[0].main;
-//let descriptionInput = document.querySelector("#description-index");
-//descriptionInput.innerHTML = `${description}`;
 
 let today = document.querySelector("#current-day-time");
 today.innerHTML = formatDate(response.data.dt * 1000);
@@ -54,12 +42,24 @@ let maxTemperature = Math.round (response.data.main.temp_max);
 let minTemperature = Math.round (response.data.main.temp_min);
 let tempMaxMin = document.querySelector ("#temp-max-min-today");
 tempMaxMin.innerHTML = `${maxTemperature}° / ${minTemperature}°`;
+
+let icon = document.querySelector("#icon");
+icon.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+icon.setAttribute("alt", response.data.weather[0].description);
+}
+function changeDegreesCelsius (event) {
+  event.preventDefault();
+  let degreeSwitch = document.querySelector("#fahrenheit-celsius");
+  degreeSwitch.innerHTML = `Switch to Fahrenheit`;
 }
 
 function changeDegrees(event) {
   event.preventDefault();
   let degreeSwitch = document.querySelector("#fahrenheit-celsius");
   degreeSwitch.innerHTML = `Switch to Celsius`;
+
+ let degrees = document.querySelector("#fahrenheit-celsius");
+degrees.addEventListener("click", changeDegreesCelsius);
 }
 
 let degrees = document.querySelector("#fahrenheit-celsius");

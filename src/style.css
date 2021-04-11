@@ -34,18 +34,19 @@ form{
 .current-location-icon:hover{
     color: #2da3d6;
 }
-h1{ font-size: 35px;
+h1{ font-size: 40px;
     display: inline;
-    padding: 0 0 10px 0;
+    padding: 0 auto;
     font-family: 'Yantramanav', sans-serif;
     color: #134A61;
 }
 .cloud-icon {
-    font-size: 50px;
+    font-size: 40px;
     position: relative;
-    right: -38px;
-    padding: 0 0 10px 0;
-    color: #134A61;  
+    right: -20px;
+    bottom: -10px;
+    padding: 0 auto;
+    
 }
 p.temperature-today{
     font-size: 13px;
