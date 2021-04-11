@@ -1,4 +1,5 @@
-function formatDate (date) {
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
     let dateIndex = date.getDay();
     let day = [
         "Sunday",
@@ -21,9 +22,39 @@ function formatDate (date) {
     }
     return `${currentDate} ${currentHour}:${currentMinutes}`;
 }
+function showTemperature (response) {
+
+document.querySelector ("#city-name").innerHTML = response.data.name;
+
+document.querySelector("#temperature-input").innerHTML = Math.round(response.data.main.temp);
+//let temperature = Math.round(response.data.main.temp);
+//let temperatureElement = document.querySelector("#temperature-input");
+//temperatureElement.innerHTML = ` ${temperature}`;
+
+document.querySelector("#humidity-index").innerHTML = Math.round(response.data.main.humidity);
+//let humidity = Math.round(response.data.main.humidity);
+//let humidityInput = document.querySelector("#humidity-index");
+//humidityInput.innerHTML = ` Humidity ${humidity}%`;
+
+document.querySelector("#wind-index").innerHTML = Math.round(response.data.wind.speed);
+//let wind = Math.round(response.data.wind.speed);
+//let windSpeed = document.querySelector("#wind-index");
+//windSpeed.innerHTML = ` Wind ${wind} km/h`;
+
+document.querySelector("#description-index").innerHTML = response.data.weather[0].main;
+//let description = response.data.weather[0].main;
+//let descriptionInput = document.querySelector("#description-index");
+//descriptionInput.innerHTML = `${description}`;
+
 let today = document.querySelector("#current-day-time");
-let currentDateTime = new Date();
-today.innerHTML = formatDate(currentDateTime);
+today.innerHTML = formatDate(response.data.dt * 1000);
+
+//document.querySelector ("#temp-max-min-today").innerHtml = Math.round (response.data.main.temp_max);
+let maxTemperature = Math.round (response.data.main.temp_max);
+let minTemperature = Math.round (response.data.main.temp_min);
+let tempMaxMin = document.querySelector ("#temp-max-min-today");
+tempMaxMin.innerHTML = `${maxTemperature}° / ${minTemperature}°`;
+}
 
 function changeDegrees(event) {
   event.preventDefault();
@@ -33,33 +64,6 @@ function changeDegrees(event) {
 
 let degrees = document.querySelector("#fahrenheit-celsius");
 degrees.addEventListener("click", changeDegrees);
-
-function showTemperature (response) {
-
-document.querySelector ("#city-name").innerHTML = response.data.name;
-
-let temperature = Math.round(response.data.main.temp);
-let temperatureElement = document.querySelector("#temperature-input");
-temperatureElement.innerHTML = ` ${temperature}`;
-
-let humidity = Math.round(response.data.main.humidity);
-let humidityInput = document.querySelector("#humidity-index");
-humidityInput.innerHTML = ` Humidity ${humidity}%`;
-
-let wind = Math.round(response.data.wind.speed);
-let windSpeed = document.querySelector("#wind-index");
-windSpeed.innerHTML = ` Wind ${wind} km/h`;
-
-let description = response.data.weather[0].main;
-let descriptionInput = document.querySelector("#description-index");
-descriptionInput.innerHTML = `${description}`;
-
-//document.querySelector ("#temp-max-min-today").innerHtml = Math.round (response.data.main.temp_max);
-let maxTemperature = Math.round (response.data.main.temp_max);
-let minTemperature = Math.round (response.data.main.temp_min);
-let tempMaxMin = document.querySelector ("#temp-max-min-today");
-tempMaxMin.innerHTML = `${maxTemperature}° / ${minTemperature}°`;
-}
 
 function searchCity(city) {
 let apikey ="bb872f49cc68a55123bc66fe7274548f";
@@ -74,7 +78,6 @@ function handleSubmit(event) {
   let city = document.querySelector ("#enter-city-input").value;
   searchCity(city);
 }
-searchCity("London");
 
 let chooseCity = document.querySelector ("#search");
 chooseCity.addEventListener ("submit", handleSubmit);
@@ -85,12 +88,14 @@ function retrivePosition(position) {
   let units = "metric";
   let apikey ="bb872f49cc68a55123bc66fe7274548f";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apikey}&units=${units}`;
-
+  
   axios.get(apiUrl).then(showTemperature);
 }
 function getCurrentLocation (event){
-event.preventDefault();
-navigator.geolocation.getCurrentPosition(retrivePosition);
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(retrivePosition);
 }
 let currentLocationIcon = document.querySelector ("#current-location");
 currentLocationIcon.addEventListener ("click", getCurrentLocation);
+
+searchCity("London");
