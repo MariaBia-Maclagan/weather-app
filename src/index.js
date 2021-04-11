@@ -33,7 +33,6 @@ document.querySelector("#description-index").innerHTML = response.data.weather[0
 let today = document.querySelector("#current-day-time");
 today.innerHTML = formatDate(response.data.dt * 1000);
 
-//document.querySelector ("#temp-max-min-today").innerHtml = Math.round (response.data.main.temp_max);
 let maxTemperature = Math.round (response.data.main.temp_max);
 let minTemperature = Math.round (response.data.main.temp_min);
 let tempMaxMin = document.querySelector ("#temp-max-min-today");
@@ -46,6 +45,8 @@ icon.setAttribute("alt", response.data.weather[0].description);
 celsiusTemperature = response.data.main.temp;
 }
 celsiusTemperature = null;
+//maxTemperature = null;
+//minTemperature = null;
 
 function changeDegreesCelsius (event) {
   event.preventDefault();
@@ -70,6 +71,11 @@ function changeDegreesFahrenheit(event) {
 
   let fahrenheit = document.querySelector("#degree-celsius-input");
   fahrenheit.innerHTML =`°F`;
+
+  //let maxTemp = Math.round (maxTemperature * 9/5+32);
+  //let minTemp = Math.round (minTemperature * 9/5+32);
+  //let tempMaxMin = document.querySelector ("#temp-max-min-today");
+  //tempMaxMin.innerHTML = `${maxTemp}° / ${minTemp}°`;
 
  let degrees = document.querySelector("#fahrenheit-celsius");
  degrees.addEventListener("click", changeDegreesCelsius);

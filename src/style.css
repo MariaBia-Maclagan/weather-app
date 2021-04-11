@@ -36,6 +36,8 @@ form{
 }
 h1{ font-size: 40px;
     display: inline;
+    position: relative;
+    bottom: -40px;
     padding: 0 auto;
     font-family: 'Yantramanav', sans-serif;
     color: #134A61;
