@@ -59,6 +59,9 @@ function changeDegreesCelsius (event) {
   let celsius = document.querySelector("#degree-celsius-input");
   celsius.innerHTML =`°C`;
 
+  degrees.addEventListener("click", changeDegreesFahrenheit);
+  degrees.removeEventListener("click", changeDegreesCelsius);
+
 }
 
 function changeDegreesFahrenheit(event) {
@@ -77,8 +80,8 @@ function changeDegreesFahrenheit(event) {
   //let tempMaxMin = document.querySelector ("#temp-max-min-today");
   //tempMaxMin.innerHTML = `${maxTemp}° / ${minTemp}°`;
 
- let degrees = document.querySelector("#fahrenheit-celsius");
  degrees.addEventListener("click", changeDegreesCelsius);
+ degrees.removeEventListener("click", changeDegreesFahrenheit);
 }
 
 let degrees = document.querySelector("#fahrenheit-celsius");
