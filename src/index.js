@@ -120,4 +120,27 @@ function getCurrentLocation (event){
 let currentLocationIcon = document.querySelector ("#current-location");
 currentLocationIcon.addEventListener ("click", getCurrentLocation);
 
+function displayForecast (){
+  let forecastElement = document.querySelector ("#forecast");
+
+  let days = ["Wed", "Thu","Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach (function (day) {
+    forecastHTML= forecastHTML + `
+        <div class="col-8">
+    <li>
+       <p> <i class="fas fa-cloud-sun cloud-sun-icon"></i> ${day}</p>
+    </li>
+</div>
+<div class="col-4">
+    <li id="temp-tomorrow">
+       <strong>6°</strong> <spam>/0°</spam>
+</div>`;
+  });
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+
 searchCity("London");
+displayForecast();
