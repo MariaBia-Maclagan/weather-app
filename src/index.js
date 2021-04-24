@@ -1,3 +1,4 @@
+// function for current temperature and date
 function formatDate(timestamp) {
   let date = new Date(timestamp);
     let dateIndex = date.getDay();
@@ -22,7 +23,62 @@ function formatDate(timestamp) {
     }
     return `${currentDate} ${currentHour}:${currentMinutes}`;
 }
+
+function formatDay(timeStamp){
+  let date = new Date (timeStamp * 1000);
+  let day = date.getDay ();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+// function to display forecast using HTML code
+function displayForecast (response){
+  //passForecastResponse = response;
+  let forecastElement = document.querySelector ("#forecast");
+
+// try to change fahrenheit and celcius in the forecast
+//let maxTemp = null;
+//let minTemp = null;
+
+  let forecast = response.data.daily;
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach (function (forecastDay, index){
+    if ( index < 5) 
+    //{
+      //if (units == "celcius"){
+        //maxTemp = Math.round(forecastDay.temp.max);
+        //minTemp = Math.round(forecastDay.temp.min);
+      //} else if (units == "fahrenheit") {
+        //maxTemp = Math.round((forecastDay.temp.max *9) /5 +32);
+        //minTemp = Math.round((forecastDay.temp.min *9) /5 +32);
+      //}}
+    
+    forecastHTML= forecastHTML + `
+    <div class="col-8">
+    <li>
+    <div class="cloud-sun-icon"> <img src= "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="30"/> 
+    ${formatDay(forecastDay.dt)}</div>
+    </li>
+    </div>
+<div class="col-4">
+<li id="temp-tomorrow">
+<strong>${Math.round(forecastDay.temp.max)}°</strong> <spam>/${Math.round(forecastDay.temp.min)}°</spam>
+</div>`;
+});
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;
+}
+// function to find the coordnates and help the above function to display the forecast for the serached city
+function getForecast (coordinates) {
+  let apiKey ="bb872f49cc68a55123bc66fe7274548f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+// "main function" Display the elements of the serached city
 function showTemperature (response) {
+  //passTempResponse = response;
 
 document.querySelector ("#city-name").innerHTML = response.data.name;
 document.querySelector("#temperature-input").innerHTML = Math.round(response.data.main.temp);
@@ -46,49 +102,8 @@ celsiusTemperature = response.data.main.temp;
 
 getForecast(response.data.coord);
 }
-celsiusTemperature = null;
-//maxTemperature = null;
-//minTemperature = null;
 
-function changeDegreesCelsius (event) {
-  event.preventDefault();
-  let degreeSwitch = document.querySelector("#fahrenheit-celsius");
-  degreeSwitch.innerHTML = `Switch to Fahrenheit`;
-
-  let temperatureElement = document.querySelector("#temperature-input");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-
-  let celsius = document.querySelector("#degree-celsius-input");
-  celsius.innerHTML =`°C`;
-
-  degrees.addEventListener("click", changeDegreesFahrenheit);
-  degrees.removeEventListener("click", changeDegreesCelsius);
-
-}
-
-function changeDegreesFahrenheit(event) {
-  event.preventDefault();
-  let degreeSwitch = document.querySelector("#fahrenheit-celsius");
-  degreeSwitch.innerHTML = `Switch to Celsius`;
-
-  let temperatureElement = document.querySelector("#temperature-input");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature * 9/5+32);
-
-  let fahrenheit = document.querySelector("#degree-celsius-input");
-  fahrenheit.innerHTML =`°F`;
-
-  //let maxTemp = Math.round (maxTemperature * 9/5+32);
-  //let minTemp = Math.round (minTemperature * 9/5+32);
-  //let tempMaxMin = document.querySelector ("#temp-max-min-today");
-  //tempMaxMin.innerHTML = `${maxTemp}° / ${minTemp}°`;
-
- degrees.addEventListener("click", changeDegreesCelsius);
- degrees.removeEventListener("click", changeDegreesFahrenheit);
-}
-
-let degrees = document.querySelector("#fahrenheit-celsius");
-degrees.addEventListener("click", changeDegreesFahrenheit);
-
+// function to call the api and search the city
 function searchCity(city) {
 let apikey ="bb872f49cc68a55123bc66fe7274548f";
 let units = "metric";
@@ -97,15 +112,51 @@ let apiUrl =`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${a
 axios.get(apiUrl).then(showTemperature);
 }
 
+// function to get the infrmation typed and call the above function
 function handleSubmit(event) {
   event.preventDefault();
   let city = document.querySelector ("#enter-city-input").value;
   searchCity(city);
 }
 
-let chooseCity = document.querySelector ("#search");
-chooseCity.addEventListener ("submit", handleSubmit);
+// function to change the units
 
+function changeDegreesCelsius (event) {
+  event.preventDefault();
+  let degreeSwitch = document.querySelector("#fahrenheit-celsius");
+  degreeSwitch.innerHTML = `Switch to Fahrenheit`;
+  
+  let temperatureElement = document.querySelector("#temperature-input");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  
+  let celsius = document.querySelector("#degree-celsius-input");
+  celsius.innerHTML =`°C`;
+  
+  degrees.addEventListener("click", changeDegreesFahrenheit);
+  degrees.removeEventListener("click", changeDegreesCelsius);
+  
+}
+
+function changeDegreesFahrenheit(event) {
+  event.preventDefault();
+  let degreeSwitch = document.querySelector("#fahrenheit-celsius");
+  degreeSwitch.innerHTML = `Switch to Celsius`;
+  
+  let temperatureElement = document.querySelector("#temperature-input");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature * 9/5+32);
+  
+  let fahrenheit = document.querySelector("#degree-celsius-input");
+  fahrenheit.innerHTML =`°F`;
+  
+  //let maxTemp = Math.round (maxTemperature * 9/5+32);
+  //let minTemp = Math.round (minTemperature * 9/5+32);
+  //let tempMaxMin = document.querySelector ("#temp-max-min-today");
+  //tempMaxMin.innerHTML = `${maxTemp}° / ${minTemp}°`;
+  
+  degrees.addEventListener("click", changeDegreesCelsius);
+  degrees.removeEventListener("click", changeDegreesFahrenheit);
+}
+// function to find the user current location
 function retrivePosition(position) {
   let latitude = position.coords.latitude;
   let longitude = position.coords.longitude;
@@ -122,40 +173,20 @@ function getCurrentLocation (event){
 let currentLocationIcon = document.querySelector ("#current-location");
 currentLocationIcon.addEventListener ("click", getCurrentLocation);
 
-function displayForecast (response){
-  let forecastElement = document.querySelector ("#forecast");
+// global variables
+celsiusTemperature = null;
+//let units = "celcius";
+//let passTempResponse = null;
+//let passForecastResponse = null;
+//maxTemperature = null;
+//minTemperature = null;
 
-  let forecast = response.data.daily;
+let degrees = document.querySelector("#fahrenheit-celsius");
+degrees.addEventListener("click", changeDegreesFahrenheit);
 
-  let forecastHTML = `<div class="row">`;
-  forecast.forEach (function (forecastDay, index){
-    if ( index < 5)
-    forecastHTML= forecastHTML + `
-        <div class="col-8">
-    <li>
-       <div class="cloud-sun-icon"> <img src= "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"/> 
-       ${formatDay(forecastDay.dt)}</div>
-    </li>
-</div>
-<div class="col-4">
-    <li id="temp-tomorrow">
-       <strong>${Math.round(forecastDay.temp.max)}°</strong> <spam>/${Math.round(forecastDay.temp.min)}°</spam>
-</div>`;
-  });
-forecastHTML = forecastHTML + `</div>`;
-forecastElement.innerHTML = forecastHTML;
-}
-function getForecast (coordinates) {
-  let apiKey ="bb872f49cc68a55123bc66fe7274548f";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayForecast);
-}
-function formatDay(timeStamp){
-  let date = new Date (timeStamp * 1000);
-  let day = date.getDay ();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+let chooseCity = document.querySelector ("#search");
+chooseCity.addEventListener ("submit", handleSubmit);
 
-  return days[day];
-}
+// default search
 searchCity("London");
 
