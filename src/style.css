@@ -1,5 +1,6 @@
 body{
-    background: linear-gradient(99.6deg, rgb(112, 128, 152) 10.6%, rgb(240, 228, 211) 32.9%, rgb(236, 212, 185) 52.7%, rgb(220, 227, 239) 72.8%, rgb(185, 205, 227) 81.1%, rgb(154, 180, 212) 102.4%);
+    background: linear-gradient(89deg, rgb(253, 220, 155) 26.2%, rgb(255, 215, 165) 48.5%);
+    
 }
 div.card{
  display: block;
@@ -7,19 +8,27 @@ div.card{
  padding: 30px 40px 20px 40px;
  border-radius: 15px;
  box-shadow: rgb(0 0 0 / 20%) 0 5px 5px 0;
- background: linear-gradient(to top, #dfe9f3 0%, white 100%);
+ background: #005689;
  max-width: 500px;
 }
 form{
     text-align: center;
     font-family: 'M PLUS 1p', sans-serif;
+    
+}
+.search{
+    box-shadow: rgb(0 0 0 / 20%) 0 3px 3px 0;
+    border: none;
+    border-radius: 15px;
+
 }
 .button {
     font-size: 13px;
     box-shadow: rgb(0 0 0 / 20%) 0 3px 3px 0;
-    background-color: #134A61;
+    background-color:  #007cb9;
     color:#ffffff;
     border: none;
+    border-radius: 15px;
 }
 .button:hover{
     color: #ffffff;
@@ -27,7 +36,7 @@ form{
 }
 .current-location-icon{
     font-size: 25px;
-    color: #134A61;
+    color:  #007cb9;
     position: relative;
     top:5px;
 }
@@ -38,7 +47,7 @@ h1{ font-size: 40px;
     display: inline;
     padding: 0 auto;
     font-family: 'Yantramanav', sans-serif;
-    color: #134A61;
+    color: #d5eeff;
 }
 .cloud-icon {
     font-size: 40px;
@@ -52,14 +61,14 @@ p.temperature-today{
     font-size: 13px;
     padding: 0;
     font-family: 'M PLUS 1p', sans-serif;
-    color: #787d83;
+    color: #ffab5d;
 }
 p.precipitation-today{
     font-size: 12px;
     position: relative;
     right: -20px;
     font-family: 'M PLUS 1p', sans-serif;
-    color: #787d83;
+    color: #ffab5d;
 }
 h2 {
     font-size: 50px;
@@ -67,7 +76,7 @@ h2 {
     left: 20px;
     font-family: 'Yantramanav', sans-serif;
     padding: 0;
-    color:#3581bb
+    color:#d5eeff;
     
 }
 .degree{
@@ -76,7 +85,7 @@ h2 {
     top: -24px;
     left: -10px;
     text-decoration: none;
-    color:#3581bb
+    color:#d5eeff;
 }
 h2.temperature-now{
     display: block;
@@ -92,7 +101,7 @@ ul{
 li{
     padding: 10px 0;
     font-family: 'M PLUS 1p', sans-serif;
-    color: #c98922;
+    color: #ffab5d;
     font-size: 15px;
 }
 .cloud-sun-icon {
@@ -102,11 +111,11 @@ h3{
     font-size: 12px;
     text-align: center;
     font-family: 'M PLUS 1p', sans-serif;
-    color: #787d83;
+    color: #007cb9;
 }
 .fahrenheit {
     text-decoration:none;
-    color: #787d83;
+    color:  #007cb9;
 }
 .fahrenheit:hover{
     color:#2da3d6;
