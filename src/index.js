@@ -27,37 +27,24 @@ function formatDate(timestamp) {
 function formatDay(timeStamp){
   let date = new Date (timeStamp * 1000);
   let day = date.getDay ();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return days[day];
 }
 // function to display forecast using HTML code
 function displayForecast (response){
-  //passForecastResponse = response;
+  
   let forecastElement = document.querySelector ("#forecast");
-
-// try to change fahrenheit and celcius in the forecast
-//let maxTemp = null;
-//let minTemp = null;
 
   let forecast = response.data.daily;
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach (function (forecastDay, index){
     if ( index < 5) 
-    //{
-      //if (units == "celcius"){
-        //maxTemp = Math.round(forecastDay.temp.max);
-        //minTemp = Math.round(forecastDay.temp.min);
-      //} else if (units == "fahrenheit") {
-        //maxTemp = Math.round((forecastDay.temp.max *9) /5 +32);
-        //minTemp = Math.round((forecastDay.temp.min *9) /5 +32);
-      //}}
-    
     forecastHTML= forecastHTML + `
     <div class="col-8">
     <li>
-    <div class="cloud-sun-icon"> <img src= "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="30"/> 
+    <div class="cloud-sun-icon"> <img src= "http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" alt="" width="38"/> 
     ${formatDay(forecastDay.dt)}</div>
     </li>
     </div>
@@ -78,8 +65,7 @@ function getForecast (coordinates) {
 
 // "main function" Display the elements of the serached city
 function showTemperature (response) {
-  //passTempResponse = response;
-
+  
 document.querySelector ("#city-name").innerHTML = response.data.name;
 document.querySelector("#temperature-input").innerHTML = Math.round(response.data.main.temp);
 document.querySelector("#humidity-index").innerHTML = Math.round(response.data.main.humidity);
@@ -148,11 +134,6 @@ function changeDegreesFahrenheit(event) {
   let fahrenheit = document.querySelector("#degree-celsius-input");
   fahrenheit.innerHTML =`°F`;
   
-  //let maxTemp = Math.round (maxTemperature * 9/5+32);
-  //let minTemp = Math.round (minTemperature * 9/5+32);
-  //let tempMaxMin = document.querySelector ("#temp-max-min-today");
-  //tempMaxMin.innerHTML = `${maxTemp}° / ${minTemp}°`;
-  
   degrees.addEventListener("click", changeDegreesCelsius);
   degrees.removeEventListener("click", changeDegreesFahrenheit);
 }
@@ -175,11 +156,6 @@ currentLocationIcon.addEventListener ("click", getCurrentLocation);
 
 // global variables
 celsiusTemperature = null;
-//let units = "celcius";
-//let passTempResponse = null;
-//let passForecastResponse = null;
-//maxTemperature = null;
-//minTemperature = null;
 
 let degrees = document.querySelector("#fahrenheit-celsius");
 degrees.addEventListener("click", changeDegreesFahrenheit);

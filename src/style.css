@@ -1,6 +1,5 @@
 body{
-    background: linear-gradient(89deg, rgb(253, 220, 155) 26.2%, rgb(255, 215, 165) 48.5%);
-    
+    background: radial-gradient(592px at 48.2% 50%, rgb(198, 237, 255) 0%, rgb(253, 220, 155) 74.6%);
 }
 div.card{
  display: block;
@@ -26,12 +25,12 @@ form{
     font-size: 13px;
     box-shadow: rgb(0 0 0 / 20%) 0 3px 3px 0;
     background-color:  #007cb9;
-    color:#ffffff;
+    color:#d5eeff;
     border: none;
     border-radius: 15px;
 }
 .button:hover{
-    color: #ffffff;
+    color: #d5eeff;
     background-color: #2da3d6;;
 }
 .current-location-icon{
@@ -132,4 +131,8 @@ h3{
 }
 .code {
     text-decoration: none;
+    color: #007cb9;
+}
+.code:hover{
+    color:#2da3d6;
 }
